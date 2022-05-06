@@ -1,0 +1,22 @@
+.tables{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin-top: 2rem;
+}
+
+.table>:not(caption)>*>*{
+    padding: 0;
+}
+
+.tables__table {
+    height: fit-content;
+    width: 40%; 
+    text-align: center;
+    line-height: 2rem;    
+}
+
+.tables__table thead{
+    color: #fff;
+}

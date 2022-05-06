@@ -1,0 +1,12 @@
+.guess-form__button-submit{
+    margin-left: 0.6rem;
+}
+
+.guess-form__badge{
+    margin-left: 0.4rem;
+}
+
+.guess-form__input{
+    margin-left: 0.4rem;
+    border-radius: 0.4rem;
+}
