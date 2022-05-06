@@ -1,0 +1,28 @@
+{
+  "name": "guess-the-country",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "npm install && npm run setup-frontend",
+    "setup-frontend": "cd client && npm install",
+    "back": "cd server && nodemon server.js localhost 3001",
+    "front": "cd client && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raphaelzaneti/Guess-the-country.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raphaelzaneti/Guess-the-country/issues"
+  },
+  "homepage": "https://github.com/raphaelzaneti/Guess-the-country#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.16"
+  }
+}
