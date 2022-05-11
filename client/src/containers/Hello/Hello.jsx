@@ -12,8 +12,9 @@ const Hello = () => {
     const [renderGame, setRenderGame] = useState(false)
 
     function backendTest(){
-        console.log('entrou')
-        axios.get('http://localhost:3001/teste', {params: {name: "Brazil"}})
+        const backendTest = document.getElementById('backend')
+        console.log(backendTest.value)
+        axios.get('http://localhost:3001/teste', {params: {name: backendTest.value}})
             .then(res => console.log(res.data))
     }
 
@@ -37,6 +38,7 @@ const Hello = () => {
 
                             <Rules />
 
+                            <input type="text" name="backend" id="backend" />
                             <button type="button" onClick={backendTest}>teste</button>
                         </div>
                     </main>

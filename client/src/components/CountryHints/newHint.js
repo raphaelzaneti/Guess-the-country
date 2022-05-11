@@ -5,7 +5,7 @@ const HintsContext = createContext()
 
 export function HintsProvider(props){
     
-    const [hints, setHints] = useState(Array(13).fill(false))
+    const [hints, setHints] = useState(Array(16).fill(false))
     
     return(
         <HintsContext.Provider value={{
@@ -23,12 +23,12 @@ export function useHints(){
 }
 
 export function clearBoolean(){
-    booleanTips = Array(13).fill(false)
+    booleanTips = Array(15).fill(false)
     return booleanTips
 }
 
 export function newHint(){
-    let hintIndex = Math.floor(Math.random()*13)
+    let hintIndex = Math.floor(Math.random()*15)
     
     if(booleanTips.every(e => e===true)){
         return booleanTips
@@ -36,7 +36,7 @@ export function newHint(){
 
     if(booleanTips[hintIndex] === true){
         while(booleanTips[hintIndex] === true){
-            hintIndex = Math.floor(Math.random()*12)
+            hintIndex = Math.floor(Math.random()*15)
         }
         booleanTips[hintIndex] = true
     } else{

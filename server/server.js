@@ -4,8 +4,8 @@ const cors = require('cors')
 
 const port = 3001
 
-const getCountries = require('./getCountries')
-const {rundDB, updateTable} = require('./db/db.js')
+const {conn, connectDB} = require('./db/db')
+const {rundDB, updateTable} = require('./db/generateCountriesDB.js')
 
 app.use(cors())
 app.use(express.json())
@@ -14,7 +14,15 @@ app.use(express.json())
 app.get('/teste', async (req, res) =>{
     
     console.log(req.query.name)
-    res.send(await getCountries(req.query.name))
+    
+    conn.query(`SELECT * FROM countries WHERE country_name="${req.query.name}"`, async (err, data) =>{
+
+        const result = await data[0]
+        console.log(data)
+
+        res.send(result)
+    })
+    
 })
 
 rundDB()
