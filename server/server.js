@@ -6,6 +6,7 @@ const port = 3001
 
 const {conn, connectDB} = require('./db/db')
 const {rundDB, updateTable} = require('./db/generateCountriesDB.js')
+const {hintsCounter, generateNewHint, clearHints} = require('./controllers/HintsController')
 
 app.use(cors())
 app.use(express.json())
@@ -22,6 +23,18 @@ app.get('/teste', async (req, res) =>{
 
         res.send(result)
     })
+    
+})
+
+app.get('/hints/clear', async (req, res) =>{
+    clearHints(hintsCounter)
+    res.send(hintsCounter)
+})
+
+app.get('/hints', async (req, res) =>{
+    
+    generateNewHint(hintsCounter)
+    res.send(hintsCounter)
     
 })
 
