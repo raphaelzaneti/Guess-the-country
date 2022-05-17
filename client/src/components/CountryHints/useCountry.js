@@ -7,28 +7,15 @@ const CountryContext = createContext()
 
 export default function CountryProvider(props){
     
-    const {hints, setHints} = useHints()
+    const [countryId, setCountryId] = useState()
     const [country, setCountry] = useState({})
-    const {guessedCountry, setGuessedCountry} = useGuessedCountry()
-
-    function generateCountry(){
-       /* clearBoolean()
-        setHints(Array(13).fill(false))
-        let selectedCountry = newTurn()
-        setCountry(selectedCountry)
-        setGuessedCountry(selectedCountry.country)
-        */
-    }
-
-    function setCorrectCountryId(id){
-        setCountry(id)
-    }
 
     return(
         <CountryContext.Provider value={{
             country, 
             setCountry,
-            generateCountry
+            countryId, 
+            setCountryId,
         }}>
             {props.children}
         </CountryContext.Provider>
@@ -36,6 +23,6 @@ export default function CountryProvider(props){
 }
 
 export function useCountry(){
-    const {country, setCountry, generateCountry} = useContext(CountryContext)
-    return {country, setCountry, generateCountry}
+    const {country, setCountry, countryId, setCountryId} = useContext(CountryContext)
+    return {country, setCountry, countryId, setCountryId}
 }

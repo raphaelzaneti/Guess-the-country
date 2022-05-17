@@ -9,7 +9,7 @@ import { useCountry } from '../CountryHints/useCountry'
 import axios from 'axios'
 
 const GuessedForm = () => {
-    const { country, setCountry, generateCountry } = useCountry()
+    const { country, setCountry, countryId, setCountryId } = useCountry()
  
     const [correctStatus, setCorrectStatus] = useState(null)
     const [answer, setAnswer] = useState("")
@@ -23,13 +23,16 @@ const GuessedForm = () => {
     }
 
     function handleSubmit(){
-        console.log('ok', country)
+        console.log('ok', countryId)
+
         axios.post("http://localhost:3001/countries/validation", {data: 
-            {country: answer, id: country}
+            {country: answer, id: countryId}
         }).then(res => {
             console.log(res.data)
-            setCorrectStatus(res.data)
+            setCountry(res.data)
+            setCorrectStatus(res.data.result)
         })
+
 
         document.getElementById('country-selected').value = ""
     }

@@ -6,7 +6,7 @@ import { useCountry } from './useCountry'
 import Button from '../Button'
 
 const CountryHints = () => {
-    const { country, setCountry, generateCountry } = useCountry()
+    const { country, setCountry, countryId, setCountryId } = useCountry()
     const [forceUpdate, setForceUpdate] = useState(0)
     function useForceUpdate() {
         setForceUpdate(forceUpdate + 1)
@@ -14,22 +14,22 @@ const CountryHints = () => {
 
     setInterval(useForceUpdate, 10);
 
-    useEffect(generateCountry, [])
-
+    
     //from backend
-    const countryFlag = <div className='hints__flag-size'><img class="img-fluid" src={"https://countryflagsapi.com/png/"+country.country} /></div>
-
+    
     const [countryHints, setCountryHints] = useState(null)
-    const [backendCount, setBackendCount] = useState(0)
     
     const [backendHints, setBackendHints] = useState(Array(15).fill(false))
+    useEffect(generateRandomCountry, [country])
     
-    function backendTest() {
+    const countryFlag = countryHints ? <div className='hints__flag-size'><img class="img-fluid" src={"https://countryflagsapi.com/png/"+countryHints.country} /></div> : ""
+    
+    function generateRandomCountry() {
         axios.get('http://localhost:3001/countries/generate')
             .then(res => {
                 const data = res.data
                 setCountryHints(data)
-                setCountry(data.country_id)
+                setCountryId(data.country_id)
                 console.log(res.data)
             })
         
@@ -72,7 +72,6 @@ const CountryHints = () => {
                 caption="New hint"
                 onClick={() => handleBackendHints()}
             />
-            <button onClick={() => backendTest()}>Test</button>
 
         </section>
     )

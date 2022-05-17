@@ -51,7 +51,7 @@ module.exports = class CountriesController{
             idControl.push(id)
             console.log(idControl)
 
-            await res.send(result)
+            await res.send({country: dbCheck.country_name, abbr: dbCheck.abbreviation, result: result})
         })
 
     }
