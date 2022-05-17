@@ -12,11 +12,16 @@ export default function CountryProvider(props){
     const {guessedCountry, setGuessedCountry} = useGuessedCountry()
 
     function generateCountry(){
-        clearBoolean()
+       /* clearBoolean()
         setHints(Array(13).fill(false))
         let selectedCountry = newTurn()
         setCountry(selectedCountry)
         setGuessedCountry(selectedCountry.country)
+        */
+    }
+
+    function setCorrectCountryId(id){
+        setCountry(id)
     }
 
     return(
@@ -32,6 +37,5 @@ export default function CountryProvider(props){
 
 export function useCountry(){
     const {country, setCountry, generateCountry} = useContext(CountryContext)
-
     return {country, setCountry, generateCountry}
 }

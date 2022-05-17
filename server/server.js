@@ -11,20 +11,8 @@ const {hintsCounter, generateNewHint, clearHints} = require('./controllers/Hints
 app.use(cors())
 app.use(express.json())
 
-
-app.get('/teste', async (req, res) =>{
-    
-    console.log(req.query.name)
-    
-    conn.query(`SELECT * FROM countries WHERE country_name="${req.query.name}"`, async (err, data) =>{
-
-        const result = await data[0]
-        console.log(data)
-
-        res.send(result)
-    })
-    
-})
+const countriesRoutes = require('./routes/countriesRoutes')
+app.use('/countries', countriesRoutes)
 
 app.get('/hints/clear', async (req, res) =>{
     clearHints(hintsCounter)

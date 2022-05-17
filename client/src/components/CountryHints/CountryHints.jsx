@@ -16,6 +16,7 @@ const CountryHints = () => {
 
     useEffect(generateCountry, [])
 
+    //from backend
     const countryFlag = <div className='hints__flag-size'><img class="img-fluid" src={"https://countryflagsapi.com/png/"+country.country} /></div>
 
     const [countryHints, setCountryHints] = useState(null)
@@ -24,14 +25,14 @@ const CountryHints = () => {
     const [backendHints, setBackendHints] = useState(Array(15).fill(false))
     
     function backendTest() {
-        axios.get('http://localhost:3001/teste', {params: {name: "Singapore"}})
+        axios.get('http://localhost:3001/countries/generate')
             .then(res => {
-                setCountryHints(res.data)
+                const data = res.data
+                setCountryHints(data)
+                setCountry(data.country_id)
                 console.log(res.data)
             })
-        console.log(backendCount)
-        setBackendCount(backendCount+1)
-
+        
         axios.get('http://localhost:3001/hints/clear')
             .then(res =>{
                 setBackendHints(res.data)

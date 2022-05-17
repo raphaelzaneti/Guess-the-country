@@ -6,15 +6,12 @@ import { useCorrect, useCountriesArray, validateCountry } from '../validationCou
 import ResultBadge from '../ResultBadge'
 import { useScore } from '../ScoreBoard/scoreCount'
 import { useCountry } from '../CountryHints/useCountry'
+import axios from 'axios'
 
 const GuessedForm = () => {
-
-    const { guessedCountry, setGuessedCountry } = useGuessedCountry()
     const { country, setCountry, generateCountry } = useCountry()
-    const { correct, setCorrect } = useCorrect()
-    const { score, setScore, countAnswers, setCountAnswers, handleScore} = useScore()
-    const { correctCountriesArray, setCorrectCountriesArray, wrongCountriesArray, setWrongCountriesArray } = useCountriesArray()
-
+ 
+    const [correctStatus, setCorrectStatus] = useState(null)
     const [answer, setAnswer] = useState("")
 
     function handleInputChange(e) {
@@ -25,37 +22,29 @@ const GuessedForm = () => {
         e.preventDefault()
     }
 
-    function handleSubmit() {
-        setCorrect(validateCountry(
-            answer || null,
-            guessedCountry,
-            () => setScore(score + 1),
-            () => {
-                setCorrectCountriesArray(guessedCountry)
-                setScore(score+handleScore())
-                setCountAnswers(countAnswers+1)
-                
-            },
-            () => setWrongCountriesArray(guessedCountry)
-        ))
+    function handleSubmit(){
+        console.log('ok', country)
+        axios.post("http://localhost:3001/countries/validation", {data: 
+            {country: answer, id: country}
+        }).then(res => {
+            console.log(res.data)
+            setCorrectStatus(res.data)
+        })
 
-        setAnswer("")
-        generateCountry()
+        document.getElementById('country-selected').value = ""
     }
 
     return (
         <div className='guess-form'>
-            <form id="form" action="submit" onChange={handleInputChange} onSubmit={preventSubmit}>
+            <form id="form" onSubmit={preventSubmit}>
                 <span>Country name:</span>
-                <input type="text" id="country-selected" value={answer} className='guess-form__input' />
-                <Button
-                    type="button"
-                    class="btn btn-success guess-form__button-submit"
-                    id="submit"
-                    caption="Submit"
+                <input type="text" name="country" id="country-selected" className='guess-form__input' onChange={e => handleInputChange(e)} />
+                <Button 
+                    caption='Submit'
+                    className="btn btn-success guess-form__button-submit"
                     onClick={handleSubmit}
                 />
-                <ResultBadge className="guess-form__badge"/>
+                <ResultBadge correct={correctStatus} className="guess-form__badge"/>
             </form>
         </div>
     )
