@@ -8,7 +8,8 @@
     "setup": "npm install && npm run setup-frontend",
     "setup-frontend": "cd client && npm install",
     "back": "cd server && nodemon server.js localhost 3001",
-    "front": "cd client && npm start"
+    "front": "cd client && npm start",
+    "setup-db": "cd server && cd db && node generateCountriesDB.js"
   },
   "repository": {
     "type": "git",

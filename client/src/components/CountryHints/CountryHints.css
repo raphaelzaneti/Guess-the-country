@@ -7,6 +7,10 @@
     font-weight: bold;
 }
 
+.hints__hint-type-inactive{
+    color: #777;
+}
+
 .hints__button-new{
     margin-top: 0.8rem;
 }

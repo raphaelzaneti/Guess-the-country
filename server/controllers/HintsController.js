@@ -1,22 +1,30 @@
+const {hintsCounter, setHintsCounter} = require("../utils/hintsCounter")
+
+module.exports = class HintsController {
 
 
-let hintsCounter = Array(15).fill(false)
+    static async generateNewHint(req, res) {
+        
+        res.send(setHintsCounter())
+    }
 
-function generateNewHint(hints){
-    let hintIndex = Math.floor(Math.random()*15)
-    
-    if(hints[hintIndex] === true){
-        while(hints[hintIndex] === true){
-            hintIndex = Math.floor(Math.random()*15)
-        }
-        hints[hintIndex] = true
-    } else{
-        hints[hintIndex] = true
+    static async clearHints(req, res) {
+        hintsCounter.fill(false)
+        
+        const nullHints = req.query.null_hints
+        
+        nullHints.map((e, i) => {
+            if(e==='null'){
+                hintsCounter[i] = true
+            }
+        })
+
+        console.log(nullHints)
+        console.log(hintsCounter)
+
+        res.send(setHintsCounter())
     }
 }
 
-function clearHints(hints){
-    hints = hints.fill(false)
-}
 
-module.exports = {hintsCounter, generateNewHint, clearHints}
+//let hintsCounter = Array(15).fill(false)
