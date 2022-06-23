@@ -1,0 +1,31 @@
+Goal: You must "guess the country" from the hints. There are several types of hints, but some of them are not available for some countries :( 
+
+The less hints you use, more points you earn!
+
+Hints: You start the turn with just one hint. To use one more hint, you just have do press the "New hint" button.
+
+1 Hint - 400 points
+
+2 Hints -200 points
+
+3 Hints -100 points
+
+4 Hints -50 points
+
+5 Hint -30 points
+
+6 Hints -20 points
+
+7 Hints -15 points
+
+8 Hints -10 points
+
+9 Hint -6 points
+
+10 Hints -4 points
+
+11 Hints -2 points
+
+12 Hints -1 points
+
+Guess the country and enjoy the game!

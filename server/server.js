@@ -14,5 +14,7 @@ const countriesRoutes = require('./routes/countriesRoutes')
 app.use('/countries', countriesRoutes)
 const hintsRoutes = require('./routes/hintsRoutes')
 app.use('/hints', hintsRoutes)
+const rulesRoutes = require('./routes/rulesRoutes')
+app.use('/rules', rulesRoutes)
 
 app.listen(port, () => console.log("server running on port "+port))
