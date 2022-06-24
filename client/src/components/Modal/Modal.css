@@ -1,0 +1,29 @@
+.modal{
+    color: #247ba0;
+}
+
+.modal__btn{
+    margin: 10px;
+    background-color: #70be44;
+    border-color: #70be44;
+}
+
+.modal__btn:hover{
+    background-color:rgba(112, 190, 68, 0.7);
+    border-color: rgba(112, 190, 68, 0.7);;
+}
+
+.modal__btn-close{
+    color: #fff;
+    background-color: #fc9e4f;
+    border: 2px solid #fc9e4f;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+.modal__btn-close:hover{
+    background-color: rgba(252, 158, 79, 0.7);
+    border-color: rgba(252, 158, 79, 0.7);
+    color: #fff;
+
+}

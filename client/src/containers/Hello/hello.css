@@ -16,8 +16,29 @@
 }
 
 .hello__button-area{
+    margin-top: 50px;
     display: flex;
-    justify-content: space-evenly;
-    width: 50%;
-    margin-top: 4rem;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    height: 50vh;
+}
+
+.hello__home-btn{
+    background-color: #247ba0;
+    color: #fff;
+    font-size: 22px;
+    font-weight: bolder;
+    width: 400px;
+    border: solid 2px #fff;
+    border-radius: 50px;
+    margin-bottom: 20px;
+}
+
+.hello__home-btn:hover{
+    background-color: #fff;
+    color: #247ba0;
+    border-color: #247ba0;
+    transform: translateY(-4px);
+    transition: .5s;
 }

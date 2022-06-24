@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../Button';
+import './Modal.css'
 
 const Modal = (props) => {
     return (
@@ -9,7 +10,7 @@ const Modal = (props) => {
                 caption={props.buttonCaption}
                 type="button" 
                 id="rules" 
-                class="text-center btn btn-dark" 
+                class="text-center hello__home-btn" 
                 data-bs-toggle="modal" 
                 data-bs-target="#exampleModal"
             />
@@ -19,14 +20,14 @@ const Modal = (props) => {
                     <div class="modal-content">
                         <div class="modal-header">
                             <h2 class="modal-title">{props.title}</h2>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="C">
-                            <span aria-hidden="true"></span>
+                        <button type="button" class="close modal__btn-close" data-dismiss="modal" aria-label="C">
+                            <span aria-hidden="true">Close</span>
                         </button>
+                        </div>
                         <div class="modal-body">
                             {props.content}
                         </div>
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Ok</button>
+                        <button type="button" class="btn btn-success modal__btn" data-bs-dismiss="modal">Ok</button>
                     </div>
                 </div>
             </div>

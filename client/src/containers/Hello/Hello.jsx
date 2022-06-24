@@ -32,14 +32,19 @@ const Hello = () => {
                                 caption="START GAME"
                                 type="button"
                                 id="start"
-                                class="text-center btn btn-dark"
+                                className="text-center hello__home-btn"
                                 onClick={()=>setRenderGame(true)}
                                 />
 
                             <Rules />
-
-                            <input type="text" name="backend" id="backend" />
-                            <button type="button" onClick={backendTest}>teste</button>
+                            <Button 
+                                caption="STATISTICS" 
+                                className="text-center hello__home-btn" 
+                            />
+                            <Button 
+                                caption="CHANGE COUNTRIES DATA" 
+                                className="text-center hello__home-btn" 
+                            />
                         </div>
                     </main>
 
