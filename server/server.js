@@ -16,5 +16,7 @@ const hintsRoutes = require('./routes/hintsRoutes')
 app.use('/hints', hintsRoutes)
 const rulesRoutes = require('./routes/rulesRoutes')
 app.use('/rules', rulesRoutes)
+const difficultyRoutes = require('./routes/DifficultyRoutes')
+app.use('/difficulty', difficultyRoutes)
 
 app.listen(port, () => console.log("server running on port "+port))

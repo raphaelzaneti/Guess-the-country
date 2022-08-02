@@ -162,9 +162,23 @@ function createSecondaryTables(){
     const guestUserQuery = `INSERT IGNORE INTO Users(first_name, last_name, login, password) 
                                     VALUES('Guest', 'Player', 'guest', 'guest')`
 
+    const difficultyQuery = `CREATE TABLE IF NOT EXISTS Difficulty(
+        country_id INT NOT NULL,
+        correct_answers INT NOT NULL,
+        wrong_answers INT NOT NULL,
+        hints_to_guess INT NOT NULL,
+        difficulty_points FLOAT(4, 3) NOT NULL,
+        difficulty_level INT NOT NULL,
+
+        FOREIGN KEY(country_id)
+            REFERENCES Countries(country_id),
+        PRIMARY KEY(country_id)
+    )`
+
     updateTable(userQuery)
     updateTable(answersQuery)
-    updateTable(guestUserQuery)
+    updateTable(difficultyQuery)
+    //updateTable(guestUserQuery)
 
     console.log('secondary tables ok')
 

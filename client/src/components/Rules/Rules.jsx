@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Modal from "../Modal";
+import Modal from "../Modal/Modal";
 import './rules.css'
 
 const Rules = () => {
@@ -15,13 +15,14 @@ const Rules = () => {
             })
     }
 
-    useEffect(readRules, [])
-
     return (
         <>
             <Modal
+                buttonId="rules-btn"
                 buttonCaption="GAME RULES"
+                btnCallback={readRules}
                 title="Game Rules"
+                modalId="rules__modal"
                 content={
                     <div className="rules__text">
                         {rules}

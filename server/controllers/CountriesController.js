@@ -44,6 +44,7 @@ module.exports = class CountriesController{
         const currentHint = req.body.data.current_hint
         const hintsList = req.body.data.hints_list
 
+        console.log('id: '+ id, ' - ', country)
         const query = `SELECT * FROM countries WHERE country_id=${id}`
 
         conn.query(query, async (err, data) =>{

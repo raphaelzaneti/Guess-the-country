@@ -1,0 +1,15 @@
+.statistics__modal-btn{
+    background-color: #6f2e90;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-top: 50px;
+    transition: transform 1s;
+}
+
+.statistics__modal-btn:hover{
+    opacity: 0.7;
+    transform: translateY(-5px);
+    transition: transform 1s;
+}

@@ -1,6 +1,6 @@
 const mysql = require('mysql')
+require('dotenv').config({path: '../.env'})
 require('dotenv').config()
-
 
 const dbPassword = process.env.DB_PASSWORD
 const dbPort = process.env.DB_PORT

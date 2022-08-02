@@ -3,9 +3,10 @@ import axios from 'axios';
 
 import './hello.css'
 import Button from '../../components/Button'
-import Rules from '../../components/Rules'
+import Rules from '../../components/Rules/Rules'
 import Game from '../Game'
 import Header from '../Header/Header'
+import Statistics from '../../components/Statistics/Statistics';
 
 const Hello = () => {
 
@@ -36,10 +37,7 @@ const Hello = () => {
                                 />
 
                             <Rules />
-                            <Button 
-                                caption="STATISTICS" 
-                                className="text-center hello__home-btn" 
-                            />
+                            <Statistics />
                             <Button 
                                 caption="CHANGE COUNTRIES DATA" 
                                 className="text-center hello__home-btn" 
