@@ -1,4 +1,5 @@
 const hintsDictionary = {
+    all: 'all hints generated',
     0: 'capital',
     1: 'continent',
     2: 'currency_name',

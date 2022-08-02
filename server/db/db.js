@@ -21,13 +21,17 @@ const pool = mysql.createPool({
 })
 
 function runQuery(query, description) {
+    let dataFromDb
     conn.query(query, (err, data) => {
         if (err) {
             console.log(err)
         } else {
             console.log(description)
         }
+        dataFromDb = data
     })
+
+    return dataFromDb
 }
 
 function connectDB(){}

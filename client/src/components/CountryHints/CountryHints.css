@@ -15,6 +15,10 @@
     margin-top: 0.8rem;
 }
 
+.hints__button-all{
+    margin-left: 20px;
+}
+
 .hints__flag-size{
     width: 20px;
     display: inline-block;
