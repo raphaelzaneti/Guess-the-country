@@ -8,7 +8,6 @@ module.exports = class RulesController {
 
         let rules = fs.readFileSync(rulesTxt, 'utf-8')
 
-        console.log(rules)
         res.send(rules)
     }
 }

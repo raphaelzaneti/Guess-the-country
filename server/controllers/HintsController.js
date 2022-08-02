@@ -18,10 +18,7 @@ module.exports = class HintsController {
                 hintsCounter[i] = true
             }
         })
-
-        console.log(nullHints)
-        console.log(hintsCounter)
-
+        
         res.send(setHintsCounter())
     }
 }

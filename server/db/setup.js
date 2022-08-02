@@ -69,7 +69,8 @@ function dbSetup(){
             console.log(err)
         } else{
             console.log('setup ok')
-            generateCountriesDB()
+            //generateCountriesDB()
+            createSecondaryTables()
         }
     })
 }
@@ -83,9 +84,7 @@ function updateTable(query){
                 code: err.code
             })
         }
-    }) 
-    
-    
+    })  
 }
 
 function generateCountriesDB(){
@@ -135,6 +134,41 @@ function updateFlagDB(){
     console.log('flag ok')
 }
 
+function createSecondaryTables(){
+    
+    const userQuery = `CREATE TABLE IF NOT EXISTS Users(
+        user_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+        first_name VARCHAR(255) NOT NULL,
+        last_name VARCHAR(255) NOT NULL,
+        login VARCHAR(255) NOT NULL,
+        password VARCHAR(255) NOT NULL
+    )`
+
+    const answersQuery = `CREATE TABLE IF NOT EXISTS Answers(
+        answer_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+        country_id INT NOT NULL,
+        is_correct SMALLINT NOT NULL,
+        user_id INT NOT NULL,
+        n_of_hints INT NOT NULL,
+        hint_to_answer VARCHAR(255) NOT NULL,
+        hints_generated VARCHAR(255) NOT NULL,
+
+        FOREIGN KEY(country_id)
+            REFERENCES Countries(country_id),
+        FOREIGN KEY(user_id)
+            REFERENCES Users(user_id)
+    )`
+
+    const guestUserQuery = `INSERT IGNORE INTO Users(first_name, last_name, login, password) 
+                                    VALUES('Guest', 'Player', 'guest', 'guest')`
+
+    updateTable(userQuery)
+    updateTable(answersQuery)
+    updateTable(guestUserQuery)
+
+    console.log('secondary tables ok')
+
+}
 
 function rundDB(){}
 

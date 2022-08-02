@@ -9,7 +9,7 @@
     "setup-frontend": "cd client && npm install",
     "back": "cd server && nodemon server.js localhost 3001",
     "front": "cd client && npm start",
-    "setup-db": "cd server && cd db && node generateCountriesDB.js"
+    "setup-db": "cd server && cd db && node setup.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/raphaelzaneti/Guess-the-country#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^16.0.0",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.16"

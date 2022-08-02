@@ -11,12 +11,11 @@ const Hello = () => {
 
     const [renderGame, setRenderGame] = useState(false)
 
-    function backendTest(){
-        const backendTest = document.getElementById('backend')
-        console.log(backendTest.value)
-        axios.get('http://localhost:3001/hints', {params: {name: backendTest.value}})
-            .then(res => console.log(res.data))
+    function dbTest(){
+        axios.get('http://localhost:3001/countries/test')
     }
+
+    dbTest()
 
     return (
         <>

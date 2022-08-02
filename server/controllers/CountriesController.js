@@ -1,8 +1,17 @@
-const {conn} = require('../db/db')
+const {conn, pool, runQuery} = require('../db/db')
 
 let idControl = []
 
 module.exports = class CountriesController{
+
+    static async startDb(req, res){
+
+        const testQuery = 'SELECT country_name FROM countries WHERE country_id=1'
+        runQuery(testQuery)
+
+        console.log('db is running')
+        
+    }
 
     static async generateRandomCountry(req, res){
 
@@ -29,7 +38,6 @@ module.exports = class CountriesController{
     }
 
     static async countryValidation(req, res){
-        console.log(req.body)
         const country = req.body.data.country
         const id = req.body.data.id
 
@@ -49,7 +57,7 @@ module.exports = class CountriesController{
             const result = dbCheck.country_name === country ? true : false
 
             idControl.push(id)
-            console.log(idControl)
+            console.log(idControl, result)
 
             await res.send({country: dbCheck.country_name, abbr: dbCheck.abbreviation, result: result})
         })
