@@ -26,7 +26,6 @@ function runQuery(query, description) {
             console.log(err)
         } else {
             console.log(description)
-            console.log(data.insertId)
         }
     })
 }

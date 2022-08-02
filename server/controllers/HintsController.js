@@ -15,13 +15,11 @@ module.exports = class HintsController {
         
         nullHints.map((e, i) => {
             if(e==='null'){
-                hintsCounter[i] = true
+                hintsCounter[i] = null
             }
         })
-        
+
         res.send(setHintsCounter())
     }
+
 }
-
-
-//let hintsCounter = Array(15).fill(false)
