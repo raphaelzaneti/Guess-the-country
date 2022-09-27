@@ -6,7 +6,7 @@ const port = 3001
 
 const {conn, connectDB} = require('./db/db')
 const {hintsCounter, generateNewHint, clearHints} = require('./controllers/HintsController')
-
+ 
 app.use(cors())
 app.use(express.json())
 

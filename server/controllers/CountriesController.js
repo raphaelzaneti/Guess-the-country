@@ -16,6 +16,7 @@ module.exports = class CountriesController{
 
     static async generateRandomCountry(req, res){
 
+
         let randomId = Math.floor((Math.random()*(247-0)+0))
         while (idControl.some(a=>a===randomId)) {
             randomId = Math.floor((Math.random()*(247-0)+0))
@@ -34,6 +35,7 @@ module.exports = class CountriesController{
 
             const randomCountry = await data[0]
 
+            console.log(randomId+` generated: `+ randomCountry)
             await res.send(randomCountry)
         })
     }

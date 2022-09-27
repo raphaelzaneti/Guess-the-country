@@ -2,3 +2,11 @@
     padding-top: 1rem;
     color: #247ba0;
 }
+
+.header__title{
+    font-size: 2rem;
+}
+
+.header__subtitle{
+    font-size: 1.2rem;
+}

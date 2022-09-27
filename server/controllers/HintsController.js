@@ -16,7 +16,7 @@ module.exports = class HintsController {
         clearAllHints()
         
         const nullHints = req.query.null_hints
-
+        console.log(req.query)
         nullHints.map((e, i) => {
             if(e==='null'){
                 hintsCounter[i] = null
