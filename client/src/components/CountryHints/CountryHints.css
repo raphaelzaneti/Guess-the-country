@@ -1,6 +1,9 @@
 .hints{
     margin-top: 1rem;
     margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .hints__hint-type{
@@ -11,16 +14,34 @@
     color: #777;
 }
 
+.hints__button-area > button{
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 8px;
+}
+
 .hints__button-new{
     margin-top: 0.8rem;
 }
 
 .hints__button-all{
-    margin-left: 20px;
+    margin-left: 30px;
 }
 
 .hints__flag-size{
     width: 20px;
     display: inline-block;
     margin-left: 0.6rem;
+}
+
+@media(min-width: 767px){
+    .hints__button-area > button{
+        font-size: 1rem;
+        font-weight: 300;
+        padding: 4px 8px;
+    }
+
+    .hints__button-area > button:hover{
+        transform: translateY(-2px);
+    }
 }

@@ -1,7 +1,13 @@
 .map{
-    width: 45%;
+    width: 100%;
     margin-right: 2rem;
     height: 100%;
     background-color: #ccc;
     text-align: center;
+}
+
+@media(min-width: 767px){
+    .map{
+        width: 45%;
+    }
 }

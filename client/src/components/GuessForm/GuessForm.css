@@ -1,12 +1,58 @@
-.guess-form__button-submit{
-    margin-left: 0.6rem;
+.guess-form > form{
+    display: grid;
+    grid-template-areas: 'label . . '
+    'input input input'
+    'button badge .';
+    gap: 10px;
 }
 
-.guess-form__badge{
-    margin-left: 0.4rem;
+.guess-form__country-name{
+    grid-area: label;
+    font-size: 1.6rem;
+    font-weight: 500;
 }
 
 .guess-form__input{
-    margin-left: 0.4rem;
+    grid-area: input;
     border-radius: 0.4rem;
+    height: 2.6rem;
+}
+
+.guess-form__button-submit{
+    grid-area: button;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.guess-form__badge{
+    grid-area: badge;
+    align-self: center;
+    padding: 8px;
+    font-size: 0.8rem;
+    margin-left: 0.4rem;
+}
+
+
+@media(min-width: 767px){
+    .guess-form > form{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .guess-form__country-name{
+        font-size: 1.2rem;
+    }
+
+    .guess-form__input{
+        margin-left: 0.4rem;
+    }
+
+    .guess-form__button-submit{
+        margin-left: 0.6rem;
+        font-size: 1rem;
+    }
+
+    .guess-form__badge{
+        font-size: 0.6rem;
+    }
 }

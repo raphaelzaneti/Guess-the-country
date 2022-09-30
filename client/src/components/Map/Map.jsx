@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import './map.css'
 import WorldMap from 'react-svg-worldmap';
 import { useCountry } from '../CountryHints/useCountry'
@@ -11,6 +11,7 @@ export default props => {
     const [counter, setCounter] = useState(0)
     const { country, setCountry, countryId, setCountryId } = useCountry()
     const { correctCountriesArray, setCorrectCountriesArray, wrongCountriesArray, setWrongCountriesArray } = useCountriesArray()
+    const [mapSize, setMapSize] = useState('lg')
 
     function showCountry(abbr) {
         
@@ -20,6 +21,7 @@ export default props => {
     }
 
     useEffect(() => console.log(countriesMap), [countriesMap])
+    useLayoutEffect(() => {window.innerWidth > 767 ? setMapSize('lg') : setMapSize('sm')},[])
 
     function handleCountry(abbr) {
         const notValidAbbr = abbr === null || abbr === "" || abbr === "None" || abbr === false
@@ -45,7 +47,7 @@ export default props => {
             <div id="map" className="map">
                 <WorldMap
                     color={'red'}
-                    size="lg"
+                    size={window.innerWidth > 767 ? 'lg' : 'sm'}
                     data={countriesMap}
                 />
             </div>

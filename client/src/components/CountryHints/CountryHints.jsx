@@ -29,7 +29,7 @@ const CountryHints = () => {
         setGeneratedHints(Array(15).fill(false))
 
         let mapNullHints
-        
+
         await axios.get('http://localhost:3001/countries/generate')
             .then(res => {
                 const data = res.data
@@ -75,8 +75,8 @@ const CountryHints = () => {
         setCurrentHint(newHintIndex)
     }
 
-    async function generateAllHints(){
-        
+    async function generateAllHints() {
+
         await axios.get('http://localhost:3001/hints/generate-all')
             .then(async res => {
                 setGeneratedHints(res.data)
@@ -86,36 +86,68 @@ const CountryHints = () => {
 
     return (
         <section className='hints'>
-            <span className={nullHints[0] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Capital:</span> {generatedHints[0] ? countryHints.capital : ""} <br />
-            <span className={nullHints[1] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Continent:</span> {generatedHints[1] ? countryHints.continent : ""} <br />
-            <span className={nullHints[2] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Currency:</span> {generatedHints[2] ? countryHints.currency_name : ""} <br />
-            <span className={nullHints[3] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Domain termination (e.g. .uk, .ch):</span> {generatedHints[3] === true ? countryHints.tld : ""} <br />
-            <span className={nullHints[4] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Average elevation:</span> {generatedHints[4] === true ? countryHints.elevation : ""} <br />
-            <span className={nullHints[5] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Government Type:</span> {generatedHints[5] === true ? countryHints.government : ""} <br />
-            <span className={nullHints[6] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Independence year:</span> {generatedHints[6] === true ? countryHints.independence : ""} <br />
-            <span className={nullHints[7] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Is a landlocked country?</span> {generatedHints[7] === true ? countryHints.landlocked : ""} <br />
-            <span className={nullHints[8] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Languages:</span> {generatedHints[8] === true ? countryHints.languages : ""} <br />
-            <span className={nullHints[9] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Life expectancy:</span> {generatedHints[9] === true ? countryHints.expectancy : ""} <br />
-            <span className={nullHints[10] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Population:</span> {generatedHints[10] === true ? countryHints.population : ""} <br />
-            <span className={nullHints[11] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Main religion:</span> {generatedHints[11] === true ? countryHints.religion : ""} <br />
-            <span className={nullHints[12] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Area:</span> {generatedHints[12] === true ? countryHints.area : ""} <br />
-            <span className={nullHints[13] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Abbreviation:</span> {generatedHints[13] === true ? countryHints.abbreviation : ""} <br />
-            <span className={nullHints[14] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>National flag:</span> {generatedHints[14] === true ? countryFlag : ""} <br />
-            <Button
-                type="button"
-                class="btn-secondary btn-sm hints__button-new"
-                id="but-hint"
-                caption="New hint"
-                onClick={() => generateHint()}
-            />
+            <span>
+                <span className={nullHints[0] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Capital:</span> {generatedHints[0] ? countryHints.capital : ""}
+            </span>
+            <span>
+                <span className={nullHints[1] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Continent:</span> {generatedHints[1] ? countryHints.continent : ""}
+            </span>
+            <span>
+                <span className={nullHints[2] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Currency:</span> {generatedHints[2] ? countryHints.currency_name : ""}
+            </span>
+            <span>
+                <span className={nullHints[3] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Domain termination (e.g. .uk, .ch):</span> {generatedHints[3] === true ? countryHints.tld : ""}
+            </span>
+            <span>
+                <span className={nullHints[4] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Average elevation:</span> {generatedHints[4] === true ? countryHints.elevation : ""}
+            </span>
+            <span>
+                <span className={nullHints[5] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Government Type:</span> {generatedHints[5] === true ? countryHints.government : ""}
+            </span>
+            <span>
+                <span className={nullHints[6] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Independence year:</span> {generatedHints[6] === true ? countryHints.independence : ""}
+            </span>
+            <span>
+                <span className={nullHints[7] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Is a landlocked country?</span> {generatedHints[7] === true ? countryHints.landlocked : ""}
+            </span>
+            <span>
+                <span className={nullHints[8] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Languages:</span> {generatedHints[8] === true ? countryHints.languages : ""}
+            </span>
+            <span>
+                <span className={nullHints[9] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Life expectancy:</span> {generatedHints[9] === true ? countryHints.expectancy : ""}
+            </span>
+            <span>
+                <span className={nullHints[10] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Population:</span> {generatedHints[10] === true ? countryHints.population : ""}
+            </span>
+            <span>
+                <span className={nullHints[11] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Main religion:</span> {generatedHints[11] === true ? countryHints.religion : ""}
+            </span>
+            <span>
+                <span className={nullHints[12] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Area:</span> {generatedHints[12] === true ? countryHints.area : ""}
+            </span>
+            <span>
+                <span className={nullHints[13] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Abbreviation:</span> {generatedHints[13] === true ? countryHints.abbreviation : ""}
+            </span>
+            <span>
+                <span className={nullHints[14] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>National flag:</span> {generatedHints[14] === true ? countryFlag : ""}
+            </span>
+            <div className="hints__button-area">
+                <Button
+                    type="button"
+                    class="btn-secondary btn-sm hints__button-new"
+                    id="but-hint"
+                    caption="New hint"
+                    onClick={() => generateHint()}
+                />
 
-            <Button
-                type="button"
-                class="btn-secondary btn-sm hints__button-all"
-                id="but-all-hints"
-                caption="All hints"
-                onClick={() => generateAllHints()}
-            />
+                <Button
+                    type="button"
+                    class="btn-secondary btn-sm hints__button-all"
+                    id="but-all-hints"
+                    caption="All hints"
+                    onClick={() => generateAllHints()}
+                />
+            </div>
 
         </section>
     )

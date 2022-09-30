@@ -39,7 +39,7 @@ const GuessedForm = () => {
     return (
         <div className='guess-form'>
             <form id="form" onSubmit={preventSubmit}>
-                <span>Country name:</span>
+                <span className='guess-form__country-name'>Country name:</span>
                 <input type="text" name="country" id="country-selected" className='guess-form__input' onChange={e => handleInputChange(e)} />
                 <Button 
                     caption='Submit'

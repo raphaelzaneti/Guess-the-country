@@ -1,16 +1,3 @@
-.game-play{
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.game-play__board{
-    width: 35%;
-}
-
 /*
 color pallete
 success-green: #70be44
@@ -19,3 +6,23 @@ danger-orange: #fc9e4f
 just-white: #ffffff
 simple-purple: #6f2e90
 */
+
+.game-play{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+@media(min-width: 767px){
+    .game-play{
+        flex-direction: row;
+    }
+
+    .game-play__board{
+        width: 35%;
+    }
+}
