@@ -1,6 +1,5 @@
 import React, {createContext, useState, useContext} from 'react'
 import { useGuessedCountry } from '../../containers/Game/guessedCountry'
-import { useHints, clearBoolean } from './newHint'
 import { newTurn } from './newTurn'
 
 const CountryContext = createContext()
