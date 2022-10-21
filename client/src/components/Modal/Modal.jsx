@@ -28,7 +28,7 @@ const Modal = (props) => {
                         <div class="modal-body">
                             {props.content}
                         </div>
-                        <button type="button" class="btn btn-success modal__btn" data-bs-dismiss="modal">Ok</button>
+                        <button type="button" class="btn btn-success modal__btn" data-bs-dismiss="modal" onClick={props.okCallback}>Ok</button>
                     </div>
                 </div>
             </div>

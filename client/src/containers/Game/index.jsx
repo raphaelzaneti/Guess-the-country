@@ -3,35 +3,33 @@ import './game.css'
 import CountryHints from "../../components/CountryHints/CountryHints";
 import GuessedForm from "../../components/GuessForm/GuessForm";
 import ScoreBoard from "../../components/ScoreBoard/ScoreBoard";
-import ProviderList from "./ProvidersList";
 import Map from "../../components/Map/Map";
 import CountriesTable from "../../components/CountriesTable/CountriesTable";
+import { usePlayerSettings } from "../../hooks/usePlayerSettings";
 
 
 const Game = () => {
 
+    const {numberOfCountries, setNumberOfCountries} = usePlayerSettings()
+    console.log(numberOfCountries)
 
     return (
-        <ProviderList>
+        <section id="game-play" className="game-play">
 
-            <section id="game-play" className="game-play">
-                
-                <div id="game-board" className="game-play__board">
-                    <GuessedForm />
+            <div id="game-board" className="game-play__board">
+                <GuessedForm />
 
-                    <div id="country-data">
-                        <CountryHints />
-                        <ScoreBoard />
-                        <CountriesTable />
-                    </div>
-
+                <div id="country-data">
+                    <CountryHints />
+                    <ScoreBoard />
+                    <CountriesTable />
                 </div>
-                <Map />
 
-            </section>
+            </div>
+            <Map />
 
+        </section>
 
-        </ProviderList>
     )
 }
 

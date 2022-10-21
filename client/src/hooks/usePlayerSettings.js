@@ -16,7 +16,7 @@ export default function PlayerSettingsProvider(props){
     )
 }
 
-export function useHints(){
+export function usePlayerSettings(){
     const {numberOfCountries, setNumberOfCountries} = useContext(PlayerSettingsContext)
     return {numberOfCountries, setNumberOfCountries}
 }
