@@ -4,11 +4,15 @@ import Modal from "../Modal/Modal";
 
 const Settings = props =>{
 
-    const [countriesInput, setCountriesInput] = useState(0)
+    const [countriesInput, setCountriesInput] = useState(10)
     const {numberOfCountries, setNumberOfCountries} = usePlayerSettings()
 
     function nCountriesChange(e){
-        setCountriesInput(e.target.value)
+        if(e.target.value > 0 && e.target.value < 248 ){
+            setCountriesInput(e.target.value)
+        } else{
+            setCountriesInput(countriesInput)
+        }
     }
 
     function validateSettings(){

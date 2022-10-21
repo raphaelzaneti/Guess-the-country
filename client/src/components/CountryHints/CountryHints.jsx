@@ -4,6 +4,7 @@ import './CountryHints.css'
 import { useCountry } from './useCountry'
 import Button from '../Button'
 import { useHints } from '../../hooks/useHints'
+import { usePlayerSettings } from '../../hooks/usePlayerSettings'
 
 const CountryHints = () => {
     const { country, setCountry, countryId, setCountryId } = useCountry()
@@ -19,6 +20,8 @@ const CountryHints = () => {
 
     const [countryHints, setCountryHints] = useState(null)
     const [nullHints, setNullHints] = useState([])
+    const {numberOfCountries, setNumberOfCountries} = usePlayerSettings()
+    const [countPlayedCountries, setCountPlayedCountries] = useState(0)
     const { generatedHints, setGeneratedHints, currentHint, setCurrentHint } = useHints()
 
     useEffect(generateRandomCountry, [country])
@@ -26,6 +29,10 @@ const CountryHints = () => {
     const countryFlag = countryHints ? <div className='hints__flag-size'><img class="img-fluid" src={"https://countryflagsapi.com/png/" + countryHints.country} /></div> : ""
 
     async function generateRandomCountry() {
+        if(!handlePlayCounts()){
+            return
+        }
+
         setGeneratedHints(Array(15).fill(false))
 
         let mapNullHints
@@ -47,7 +54,18 @@ const CountryHints = () => {
                 setGeneratedHints(res.data)
             })
 
-        setNullHints(mapNullHints)
+        setNullHints(mapNullHints)  
+    }
+
+    function handlePlayCounts(){
+        if(countPlayedCountries < numberOfCountries){
+            setCountPlayedCountries(countPlayedCountries+1)
+            return true
+        } else{
+            setNumberOfCountries(-1)
+            return false
+        }
+
     }
 
     async function generateHint() {
@@ -61,6 +79,7 @@ const CountryHints = () => {
             })
 
         getNewHint(currentHintsArr, newHintsArr)
+        console.log(`plays: ${countPlayedCountries}, limit: ${numberOfCountries}`)
     }
 
     function getNewHint(oldArr, newArr) {
