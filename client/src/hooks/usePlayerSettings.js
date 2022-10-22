@@ -5,11 +5,14 @@ const PlayerSettingsContext = createContext()
 export default function PlayerSettingsProvider(props){
     
     const [numberOfCountries, setNumberOfCountries] = useState(null)
+    const [continentsSelected, setContinentsSelected] = useState(['All'])
 
     return(
         <PlayerSettingsContext.Provider value={{
             numberOfCountries, 
-            setNumberOfCountries
+            setNumberOfCountries, 
+            continentsSelected, 
+            setContinentsSelected
         }}>
             {props.children}
         </PlayerSettingsContext.Provider>
@@ -17,6 +20,6 @@ export default function PlayerSettingsProvider(props){
 }
 
 export function usePlayerSettings(){
-    const {numberOfCountries, setNumberOfCountries} = useContext(PlayerSettingsContext)
-    return {numberOfCountries, setNumberOfCountries}
+    const {numberOfCountries, setNumberOfCountries, continentsSelected, setContinentsSelected} = useContext(PlayerSettingsContext)
+    return {numberOfCountries, setNumberOfCountries, continentsSelected, setContinentsSelected}
 }

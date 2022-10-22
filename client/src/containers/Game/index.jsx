@@ -10,8 +10,8 @@ import { usePlayerSettings } from "../../hooks/usePlayerSettings";
 
 const Game = () => {
 
-    const {numberOfCountries, setNumberOfCountries} = usePlayerSettings()
-    console.log(numberOfCountries)
+    const {numberOfCountries, setNumberOfCountries, continentsSelected, setContinentsSelected} = usePlayerSettings()
+    console.log(continentsSelected)
 
     return (
         <section id="game-play" className="game-play">
