@@ -1,5 +1,10 @@
 const {conn, pool, runQuery} = require('../db/db')
+const { CountryModel } = require('../models/Country')
+const { HintModel } = require('../models/Hint')
+const { fillGeneratedCountires, getAllGeneratedCountries, getCurrentCountry, 
+    updateAnsweredCountry, checkCountriesCounter, clearCountriesCounter } = require('../utils/generatedCountries')
 const {handleHints} = require('../utils/hintsDictionary')
+const {generateRandomId} = require('../utils/randomCountryId')
 
 let idControl = []
 
@@ -13,6 +18,48 @@ module.exports = class CountriesController{
         console.log('db is running')
         
     }
+
+    static async getCountriesFromDb(req, res){
+        
+        console.log(req.body.params)
+        const selectedIds = generateRandomId(req.body.params.countries)
+
+        const countriesArr = await CountryModel.getNCountries(selectedIds)
+
+        fillGeneratedCountires(countriesArr)
+        res.send(getCurrentCountry())
+    }
+
+    static async generateNewCountry(req, res){
+        res.send( await getCurrentCountry())
+    }
+
+    static async validateCountry(req, res){
+        const country = req.body.data.country
+        const id = req.body.data.id
+        const currentHint = req.body.data.current_hint
+        const hintsList = req.body.data.hints_list
+        const correctCountry = getCurrentCountry()
+
+        const result = correctCountry.country_name === country ? true : false
+
+        
+        const hintsMapped = await handleHints(hintsList, currentHint)
+        const answeredCountry = await updateAnsweredCountry(hintsMapped, result)        
+        
+        if(correctCountry === null || checkCountriesCounter()){
+            
+            await CountryModel.saveAnswersDb(getAllGeneratedCountries())
+            clearCountriesCounter()
+            res.send({finished: true})
+            return
+        }
+
+        await res.send({country: correctCountry.country_name, abbr: correctCountry.abbreviation, result: result, finished: false})
+    }
+
+    //old methods
+
 
     static async generateRandomCountry(req, res){
 

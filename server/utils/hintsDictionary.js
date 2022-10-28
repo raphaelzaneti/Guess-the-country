@@ -18,6 +18,7 @@ const hintsDictionary = {
 }
 
 function mapHintsDictionary(arr) {
+    console.log(arr)
     let trueHints = []
     let falseHints = []
     let nullHints = []
@@ -47,7 +48,11 @@ async function handleHints(arr, hint){
 
     const hintsGenerated = usedHints.true
     const nOfHints = usedHints.true.length
-    const hintToAnswer = hintsDictionary[hint]
+    let hintToAnswer = hintsDictionary[hint]
+
+    if(hintToAnswer === undefined){
+        hintToAnswer = null
+    }
 
     return {hints_generated: hintsGenerated, n_of_hints: nOfHints, hint_to_answer: hintToAnswer}
 }

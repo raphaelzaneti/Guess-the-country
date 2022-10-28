@@ -16,16 +16,10 @@ const Hello = () => {
     const {numberOfCountries, setNumberOfCountries} = usePlayerSettings()
 
     useEffect(() =>{
-        if(numberOfCountries === -1){
+        if(numberOfCountries < 0){
             setRenderGame(false)
         }
     }, [numberOfCountries])
-
-    function dbTest(){
-        axios.get('http://localhost:3001/countries/test')
-    }
-
-    dbTest()
 
     return (
         <>

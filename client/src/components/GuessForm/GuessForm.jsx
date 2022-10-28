@@ -22,9 +22,9 @@ const GuessedForm = () => {
     }
 
     function handleSubmit(){
-        console.log(generatedHints)
+        console.log({country: answer, id: countryId, current_hint: currentHint, hints_list: generatedHints})
 
-        axios.post("http://localhost:3001/countries/validation", {data: 
+        axios.post("http://localhost:3001/countries/validate-country", {data: 
             {country: answer, id: countryId, current_hint: currentHint, hints_list: generatedHints}
         }).then(res => {
             console.log(res.data)

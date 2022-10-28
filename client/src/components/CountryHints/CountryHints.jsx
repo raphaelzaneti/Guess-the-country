@@ -20,7 +20,7 @@ const CountryHints = () => {
 
     const [countryHints, setCountryHints] = useState(null)
     const [nullHints, setNullHints] = useState([])
-    const {numberOfCountries, setNumberOfCountries} = usePlayerSettings()
+    const { numberOfCountries, setNumberOfCountries } = usePlayerSettings()
     const [countPlayedCountries, setCountPlayedCountries] = useState(0)
     const { generatedHints, setGeneratedHints, currentHint, setCurrentHint } = useHints()
 
@@ -29,39 +29,45 @@ const CountryHints = () => {
     const countryFlag = countryHints ? <div className='hints__flag-size'><img class="img-fluid" src={"https://countryflagsapi.com/png/" + countryHints.country} /></div> : ""
 
     async function generateRandomCountry() {
-        if(!handlePlayCounts()){
+        if (!handlePlayCounts()) {
             return
+        } else {
+
+            setGeneratedHints(Array(15).fill(false))
+
+            let mapNullHints
+
+            await axios.get('http://localhost:3001/countries/generate-country')
+                .then(res => {
+
+                    if (res.data.finished) {
+                        handlePlayCounts()
+                        return
+                    }
+                    const data = res.data
+                    setCountryHints(data)
+                    setCountryId(data.country_id)
+                    console.log(data)
+
+                    mapNullHints = Object.values(data).map(e => e === null ? null : "not null")
+                    mapNullHints.shift()
+                    mapNullHints.shift()
+                })
+
+            await axios.get('http://localhost:3001/hints/clear', { params: { null_hints: mapNullHints } })
+                .then(res => {
+                    setGeneratedHints(res.data.hints)
+                })
+
+            setNullHints(mapNullHints)
         }
-
-        setGeneratedHints(Array(15).fill(false))
-
-        let mapNullHints
-
-        await axios.get('http://localhost:3001/countries/generate')
-            .then(res => {
-                const data = res.data
-                setCountryHints(data)
-                setCountryId(data.country_id)
-                console.log(data)
-
-                mapNullHints = Object.values(data).map(e => e === null ? null : "not null")
-                mapNullHints.shift()
-                mapNullHints.shift()
-            })
-
-        axios.get('http://localhost:3001/hints/clear', { params: { null_hints: mapNullHints } })
-            .then(res => {
-                setGeneratedHints(res.data)
-            })
-
-        setNullHints(mapNullHints)  
     }
 
-    function handlePlayCounts(){
-        if(countPlayedCountries < numberOfCountries){
-            setCountPlayedCountries(countPlayedCountries+1)
+    function handlePlayCounts() {
+        if (countPlayedCountries < numberOfCountries) {
+            setCountPlayedCountries(countPlayedCountries + 1)
             return true
-        } else{
+        } else {
             setNumberOfCountries(-1)
             return false
         }

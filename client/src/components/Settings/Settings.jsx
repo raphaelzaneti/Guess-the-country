@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { usePlayerSettings } from "../../hooks/usePlayerSettings";
 import Modal from "../Modal/Modal";
+import axios from "axios";
 import './settings.css'
 
 const Settings = props => {

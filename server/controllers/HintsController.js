@@ -16,14 +16,19 @@ module.exports = class HintsController {
         clearAllHints()
         
         const nullHints = req.query.null_hints
-        console.log(req.query)
-        nullHints.map((e, i) => {
-            if(e==='null'){
-                hintsCounter[i] = null
-            }
-        })
 
-        res.send(setHintsCounter())
+        try {
+            nullHints.map((e, i) => {
+                if(e==='null'){
+                    hintsCounter[i] = null
+                }
+            })
+            
+            res.send({hints: setHintsCounter(), success: true})
+        } catch (error) {
+            res.send({hints: setHintsCounter(), success: false})
+        }
+
     }
 
 }
