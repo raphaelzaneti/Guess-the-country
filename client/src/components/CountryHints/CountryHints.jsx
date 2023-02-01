@@ -124,7 +124,7 @@ const CountryHints = () => {
                 <span className={nullHints[3] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Domain termination (e.g. .uk, .ch):</span> {generatedHints[3] === true ? countryHints.tld : ""}
             </span>
             <span>
-                <span className={nullHints[4] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Average elevation:</span> {generatedHints[4] === true ? countryHints.elevation : ""}
+                <span className={nullHints[4] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Average elevation:</span> {(generatedHints[4] === true && nullHints[4] !== null )? countryHints.elevation.toLocaleString('en-US') : ""}
             </span>
             <span>
                 <span className={nullHints[5] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Government Type:</span> {generatedHints[5] === true ? countryHints.government : ""}
@@ -133,7 +133,9 @@ const CountryHints = () => {
                 <span className={nullHints[6] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Independence year:</span> {generatedHints[6] === true ? countryHints.independence : ""}
             </span>
             <span>
-                <span className={nullHints[7] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Is a landlocked country?</span> {generatedHints[7] === true ? countryHints.landlocked : ""}
+                <span className={nullHints[7] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Is a landlocked country?</span> {(generatedHints[7] === true && nullHints[7] !== null)
+                    ? (countryHints.landlocked ? "Yes" : "No") 
+                    : ""}
             </span>
             <span>
                 <span className={nullHints[8] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Languages:</span> {generatedHints[8] === true ? countryHints.languages : ""}
@@ -142,13 +144,13 @@ const CountryHints = () => {
                 <span className={nullHints[9] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Life expectancy:</span> {generatedHints[9] === true ? countryHints.expectancy : ""}
             </span>
             <span>
-                <span className={nullHints[10] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Population:</span> {generatedHints[10] === true ? countryHints.population : ""}
+                <span className={nullHints[10] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Population:</span> {(generatedHints[10] === true && nullHints[10] !== null) ? countryHints.population.toLocaleString('en-US') : ""}
             </span>
             <span>
                 <span className={nullHints[11] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Main religion:</span> {generatedHints[11] === true ? countryHints.religion : ""}
             </span>
             <span>
-                <span className={nullHints[12] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Area:</span> {generatedHints[12] === true ? countryHints.area : ""}
+                <span className={nullHints[12] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Area:</span> {(generatedHints[12] === true && nullHints[12] !== null) ? countryHints.area.toLocaleString('en-US') : ""}
             </span>
             <span>
                 <span className={nullHints[13] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Abbreviation:</span> {generatedHints[13] === true ? countryHints.abbreviation : ""}

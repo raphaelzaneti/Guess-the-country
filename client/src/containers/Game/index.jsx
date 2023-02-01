@@ -12,9 +12,9 @@ import axios from "axios";
 const Game = () => {
 
     const {numberOfCountries, setNumberOfCountries, continentsSelected, setContinentsSelected} = usePlayerSettings()
-    console.log(continentsSelected)
-
+    
     if(numberOfCountries > 0){
+        console.log('more than 10 countries')
         axios.post('http://localhost:3001/countries/set-countries', {params: {countries: numberOfCountries}})
                 .then(res => res.data)
                 .then(data => console.log(data))
