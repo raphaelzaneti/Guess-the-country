@@ -26,8 +26,8 @@ const CountryHints = () => {
 
     useEffect(generateRandomCountry, [country])
 
-    const countryFlag = countryHints ? <div className='hints__flag-size'><img class="img-fluid" src={"https://countryflagsapi.com/png/" + countryHints.country} /></div> : ""
-
+    const countryFlag = countryHints ? <div className='hints__flag-size'><img class="img-fluid" src={'https://flagcdn.com/64x48/'+countryHints.abbreviation.toString().toLowerCase()+'.png'} /></div> : ""
+    
     async function generateRandomCountry() {
         if (!handlePlayCounts()) {
             return
