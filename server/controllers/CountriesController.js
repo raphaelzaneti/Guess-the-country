@@ -26,6 +26,7 @@ module.exports = class CountriesController{
 
         const countriesArr = await CountryModel.getNCountries(selectedIds)
 
+        console.log(countriesArr)
         fillGeneratedCountires(countriesArr)
         res.send(getCurrentCountry())
     }
