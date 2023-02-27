@@ -36,13 +36,15 @@ module.exports = class CountriesController{
     }
 
     static async validateCountry(req, res){
-        const country = req.body.data.country
+        //Convert country response to lower case (before it, just force it to be a string)
+        const country = String(req.body.data.country).toLowerCase()
         const id = req.body.data.id
         const currentHint = req.body.data.current_hint
         const hintsList = req.body.data.hints_list
         const correctCountry = getCurrentCountry()
 
-        const result = correctCountry.country_name === country ? true : false
+        //When validating the result, convert correct country to lower case, to make sure that response/validation ignore cases
+        const result = correctCountry.country_name.toLowerCase() === country ? true : false
 
         
         const hintsMapped = await handleHints(hintsList, currentHint)
