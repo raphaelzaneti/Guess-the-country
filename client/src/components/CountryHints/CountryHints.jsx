@@ -22,7 +22,7 @@ const CountryHints = () => {
     const [nullHints, setNullHints] = useState([])
     const { numberOfCountries, setNumberOfCountries } = usePlayerSettings()
     const [countPlayedCountries, setCountPlayedCountries] = useState(0)
-    const { generatedHints, setGeneratedHints, currentHint, setCurrentHint } = useHints()
+    const { generatedHints, setGeneratedHints, countedHints, setCountedHints, currentHint, setCurrentHint } = useHints()
 
     useEffect(generateRandomCountry, [country])
 
@@ -47,9 +47,10 @@ const CountryHints = () => {
                     const data = res.data
                     setCountryHints(data)
                     setCountryId(data.country_id)
-                    console.log(data)
 
-                    mapNullHints = Object.values(data).map(e => e === null ? null : "not null")
+                    //Array of values to be considered as null for the hints
+                    const nullElements = [-1, '-1', "Unknown", null, 'null']
+                    mapNullHints = Object.values(data).map(e => nullElements.includes(e) ? null : "not null")
                     mapNullHints.shift()
                     mapNullHints.shift()
                 })
@@ -84,6 +85,7 @@ const CountryHints = () => {
                 newHintsArr = res.data
             })
 
+        setCountedHints(nullHints)
         getNewHint(currentHintsArr, newHintsArr)
         console.log(`plays: ${countPlayedCountries}, limit: ${numberOfCountries}`)
     }
@@ -106,31 +108,32 @@ const CountryHints = () => {
             .then(async res => {
                 setGeneratedHints(res.data)
                 setCurrentHint('all')
+                setCountedHints(nullHints)
             })
     }
 
     return (
         <section className='hints'>
             <span>
-                <span className={nullHints[0] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Capital:</span> {generatedHints[0] ? countryHints.capital : ""}
+                <span className={nullHints[0] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Capital:</span> {generatedHints[0] && nullHints[0] !== null  ? countryHints.capital : ""}
             </span>
             <span>
-                <span className={nullHints[1] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Continent:</span> {generatedHints[1] ? countryHints.continent : ""}
+                <span className={nullHints[1] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Continent:</span> {generatedHints[1] && nullHints[1] !== null ? countryHints.continent : ""}
             </span>
             <span>
-                <span className={nullHints[2] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Currency:</span> {generatedHints[2] ? countryHints.currency_name : ""}
+                <span className={nullHints[2] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Currency:</span> {generatedHints[2] && nullHints[2] !== null ? countryHints.currency_name : ""}
             </span>
             <span>
-                <span className={nullHints[3] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Domain termination (e.g. .uk, .ch):</span> {generatedHints[3] === true ? countryHints.tld : ""}
+                <span className={nullHints[3] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Domain termination (e.g. .uk, .ch):</span> {generatedHints[3] === true && nullHints[3] !== null ? countryHints.tld : ""}
             </span>
             <span>
                 <span className={nullHints[4] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Average elevation:</span> {(generatedHints[4] === true && nullHints[4] !== null )? Number(countryHints.elevation).toLocaleString('en-US') : ""}
             </span>
             <span>
-                <span className={nullHints[5] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Government Type:</span> {generatedHints[5] === true ? countryHints.government : ""}
+                <span className={nullHints[5] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Government Type:</span> {generatedHints[5] === true && nullHints[5] !== null ? countryHints.government : ""}
             </span>
             <span>
-                <span className={nullHints[6] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Independence year:</span> {generatedHints[6] === true ? countryHints.independence : ""}
+                <span className={nullHints[6] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Independence year:</span> {generatedHints[6] === true && nullHints[6] !== null ? countryHints.independence : ""}
             </span>
             <span>
                 <span className={nullHints[7] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Is a landlocked country?</span> {(generatedHints[7] === true && nullHints[7] !== null)
@@ -138,25 +141,25 @@ const CountryHints = () => {
                     : ""}
             </span>
             <span>
-                <span className={nullHints[8] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Languages:</span> {generatedHints[8] === true ? countryHints.languages : ""}
+                <span className={nullHints[8] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Languages:</span> {generatedHints[8] === true && nullHints[8] !== null ? countryHints.languages : ""}
             </span>
             <span>
-                <span className={nullHints[9] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Life expectancy:</span> {generatedHints[9] === true ? countryHints.expectancy : ""}
+                <span className={nullHints[9] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Life expectancy:</span> {generatedHints[9] === true && nullHints[9] !== null ? countryHints.expectancy : ""}
             </span>
             <span>
                 <span className={nullHints[10] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Population:</span> {(generatedHints[10] === true && nullHints[10] !== null) ? Number(countryHints.population).toLocaleString('en-US') : ""}
             </span>
             <span>
-                <span className={nullHints[11] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Main religion:</span> {generatedHints[11] === true ? countryHints.religion : ""}
+                <span className={nullHints[11] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Main religion:</span> {generatedHints[11] === true && nullHints[11] !== null ? countryHints.religion : ""}
             </span>
             <span>
                 <span className={nullHints[12] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Area:</span> {(generatedHints[12] === true && nullHints[12] !== null) ? Number(countryHints.area).toLocaleString('en-US') : ""}
             </span>
             <span>
-                <span className={nullHints[13] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Abbreviation:</span> {generatedHints[13] === true ? countryHints.abbreviation : ""}
+                <span className={nullHints[13] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>Abbreviation:</span> {generatedHints[13] === true && nullHints[13] !== null ? countryHints.abbreviation : ""}
             </span>
             <span>
-                <span className={nullHints[14] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>National flag:</span> {generatedHints[14] === true ? countryFlag : ""}
+                <span className={nullHints[14] === null ? 'hints__hint-type hints__hint-type-inactive' : 'hints__hint-type'}>National flag:</span> {generatedHints[14] === true && nullHints[14] !== null ? countryFlag : ""}
             </span>
             <div className="hints__button-area">
                 <Button

@@ -12,9 +12,9 @@ CountryModel.getNCountries = async (idArray) => {
 
     const query = `SELECT country_id, IFNULL(country_name, "Unknown") AS country_name, IFNULL(capital, "Unknown") AS capital, 
 	    IFNULL(continent, "Unknown") AS continent, IFNULL(currency_name, "Unknown") AS currency_name, IFNULL(tld, "Unknown") AS tld,
-	    IFNULL(elevation, 0) AS elevation, IFNULL(government, "Unknown") AS government, IFNULL(independence, "Unknown") AS independence,
+	    IFNULL(elevation, -1) AS elevation, IFNULL(government, "Unknown") AS government, IFNULL(independence, "Unknown") AS independence,
 	    IFNULL(landlocked, "Unknown") AS landlocked, IFNULL(languages, "Unknown") AS languages, IFNULL(expectancy, "Unknown") AS expectancy,
-        IFNULL(population, 0) AS population, IFNULL(religion, "Unknown") AS religion, IFNULL(area, 0) AS area, 
+        IFNULL(population, -1) AS population, IFNULL(religion, "Unknown") AS religion, IFNULL(area, -1) AS area, 
         IFNULL(abbreviation, "Unknown") abbreviation, IFNULL(flag, "Unknown") AS flag
 		    FROM countries WHERE country_id in (${idArray.join(`, `)});`
 

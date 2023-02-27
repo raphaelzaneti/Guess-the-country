@@ -11,7 +11,7 @@ const GuessedForm = () => {
  
     const [correctStatus, setCorrectStatus] = useState(null)
     const [answer, setAnswer] = useState("")
-    const {generatedHints, setGeneratedHints, currentHint, setCurrentHint } = useHints()
+    const {generatedHints, setGeneratedHints, countedHints, setCountedHints, currentHint, setCurrentHint } = useHints()
 
     function handleInputChange(e) {
         setAnswer(e.target.value)
@@ -21,11 +21,21 @@ const GuessedForm = () => {
         e.preventDefault()
     }
 
+    function validateNullHints(){
+        //This function transform the trues from generatedHints in falses, in case that they are hints with null values
+        //The hints with null values are stored in countedHints, and it is easy to get it by comparing just the indexes
+        console.log('generated:', generatedHints)
+        console.log('counted: ', countedHints)
+        return generatedHints.map((e, i) => (countedHints[i] === null) || (e === false) ? false : true)
+    }
+
     function handleSubmit(){
-        console.log({country: answer, id: countryId, current_hint: currentHint, hints_list: generatedHints})
+        const hintsList = validateNullHints()
+        console.log('hints list:', hintsList)
+        console.log({country: answer, id: countryId, current_hint: currentHint, hints_list: hintsList})
 
         axios.post("http://localhost:3001/countries/validate-country", {data: 
-            {country: answer, id: countryId, current_hint: currentHint, hints_list: generatedHints}
+            {country: answer, id: countryId, current_hint: currentHint, hints_list: hintsList}
         }).then(res => {
             console.log(res.data)
             setCountry(res.data)

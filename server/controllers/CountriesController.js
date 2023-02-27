@@ -42,7 +42,7 @@ module.exports = class CountriesController{
         const currentHint = req.body.data.current_hint
         const hintsList = req.body.data.hints_list
         const correctCountry = getCurrentCountry()
-
+        console.log(req.body.data)
         //When validating the result, convert correct country to lower case, to make sure that response/validation ignore cases
         const result = correctCountry.country_name.toLowerCase() === country ? true : false
 

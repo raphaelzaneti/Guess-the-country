@@ -5,12 +5,15 @@ const HintsContext = createContext()
 export default function HintsProvider(props){
     
     const [generatedHints, setGeneratedHints] = useState([])
+    const [countedHints, setCountedHints] = useState([])
     const [currentHint, setCurrentHint] = useState(null)
 
     return(
         <HintsContext.Provider value={{
             generatedHints, 
             setGeneratedHints, 
+            countedHints, 
+            setCountedHints,
             currentHint, 
             setCurrentHint
         }}>
@@ -20,6 +23,6 @@ export default function HintsProvider(props){
 }
 
 export function useHints(){
-    const {generatedHints, setGeneratedHints, currentHint, setCurrentHint} = useContext(HintsContext)
-    return {generatedHints, setGeneratedHints, currentHint, setCurrentHint}
+    const {generatedHints, setGeneratedHints, countedHints, setCountedHints, currentHint, setCurrentHint} = useContext(HintsContext)
+    return {generatedHints, setGeneratedHints, countedHints, setCountedHints, currentHint, setCurrentHint}
 }
